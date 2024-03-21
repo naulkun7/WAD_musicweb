@@ -1,57 +1,69 @@
-// Header + Footer + Routes
+import { useState } from 'react'
+import styled from 'styled-components'
+
+// React Icons
+import { Drawer as AntDrawer, Divider as AntDivider } from 'antd'
+
+// Header + Footer + Routes + Sidebar
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MainRoutes from './MainRoutes'
 
+// Custom Ant Design Components
+const Drawer = styled(AntDrawer)`
+	/* Override Ant Design Drawer styles */
+	.ant-drawer-content {
+		background-color: #93b1a6 !important; /* Makes the background transparent */
+	}
+`
+const Divider = styled(AntDivider)`
+	/* Override Ant Design Divider styles */
+	.ant-divider-vertical {
+		margin: 0;
+	}
+`
+
 const App = () => {
+	// Drawer
+	const [open, setOpen] = useState(false)
+	const showDrawer = () => {
+		setOpen(true)
+	}
+	const onClose = () => {
+		setOpen(false)
+	}
+
 	return (
-		<div className="drawer">
-			<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-			<div className="drawer-content flex  min-h-screen">
-				<div
-					className={
-						'w-64 flex-shrink-0 hidden md:block m-2 overflow-hidden rounded-xl'
-					}
-				>
+		<div className="bg-[linear-gradient(180deg,#040D12_0%,#183D3D_100%)]">
+			<div className="flex min-h-screen">
+				{/* Sidebar */}
+				<div className="flex-shrink-0 hidden md:block m-1 mr-0 overflow-hidden rounded-md w-1/5">
 					<Sidebar />
 				</div>
-				{/* <div className="flex flex-col flex-grow" style={{ maxHeight: '100vh' }}>
-					<div className="overflow-auto">
-						<div className="flex items-center">
-							<label
-								htmlFor="my-drawer-3"
-								className="btn btn-square btn-ghost md:hidden"
-							>
-								<IoMenu className="text-4xl" />
-							</label>
-							<Header />
-						</div>
-						<MainRoutes />
-						<Footer />
-					</div>
-				</div> */}
-				{/* Main content area flex container */}
-				<div className="flex flex-col flex-grow" style={{ maxHeight: '100vh' }}>
-					<div className="flex-none flex items-center m-2">
-						{/* Fixed Header */}
-						<Header htmlFor="my-drawer-3" />
-					</div>
+				{/* Divider */}
+				<Divider type="vertical" className="bg-white h-screen hidden md:flex" />
+				{/* Main Content */}
+				<div className="flex flex-col flex-grow min-h-screen m-1">
+					<Header showDrawer={showDrawer} />
 					{/* Scrollable MainRoutes */}
-					<div className="flex-grow overflow-auto p-2">
+					<div className="flex-grow overflow-auto m-1 rounded-md space-y-2">
 						<MainRoutes />
-						<Footer />
 					</div>
+					<Footer />
 				</div>
 			</div>
 			{/* Sidebar */}
-			<div className="drawer-side">
-				<label htmlFor="my-drawer-3" className="drawer-overlay"></label>{' '}
-				{/* Overlay to close drawer on click */}
-				<div className={'w-64 flex-shrink-0 h-full'}>
-					<Sidebar />
-				</div>
-			</div>
+			{/* Overlay to close drawer on click */}
+			<Drawer
+				placement={'left'}
+				closable={false}
+				onClose={onClose}
+				open={open}
+				width={200}
+			>
+				<Sidebar />
+			</Drawer>
 		</div>
 	)
 }

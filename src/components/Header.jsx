@@ -1,56 +1,56 @@
-import { IoMenu } from 'react-icons/io5'
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const Header = (htmlFor) => {
+// React Icons
+import { IoMenu } from 'react-icons/io5'
+import { FaSearch } from 'react-icons/fa'
+
+// Import components
+import { Button } from 'antd'
+import Logo from './Logo'
+
+const Header = ({ showDrawer }) => {
+	const [searchTerm, setSearchTerm] = useState('')
+
+	const handleSearch = (event) => {
+		event.preventDefault() // Prevent the form from reloading the page
+		console.log(searchTerm) // Perform your search logic here
+	}
+
 	return (
-		<div className="navbar flex items-center bg-base-100 gap-4">
-			<label htmlFor={htmlFor} className="btn btn-square btn-ghost md:hidden">
-				<IoMenu className="text-4xl" />
-			</label>
-			<div className="md:hidden flex-1 gap-2">
-				<a className="text-h2">MUZIC</a>
+		<div className="flex items-center justify-between md:justify-center gap-4 p-6">
+			<div className="flex items-center md:hidden justify-between">
+				<Button type="link" onClick={showDrawer}>
+					<IoMenu className="text-4xl" />
+				</Button>
+				<Logo />
 			</div>
-			<div className="flex-1 form-control">
+			{/* Search bar */}
+			<form
+				id="search-bar"
+				className="flex text-white items-center w-1/3 md:w-1/2 group/search "
+				onSubmit={handleSearch}
+			>
 				<input
 					type="text"
-					placeholder="Search"
-					className="input input-bordered w-1/2 rounded-full bg-transparent"
-				/>
-			</div>
-			<div className="flex-none gap-2">
-				<div className="dropdown dropdown-end">
-					<div
-						tabIndex={0}
-						role="button"
-						className="btn btn-ghost btn-circle avatar"
-					>
-						<div className="w-10 rounded-full">
-							<img
-								alt="Tailwind CSS Navbar component"
-								src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-							/>
-						</div>
-					</div>
-					<ul
-						tabIndex={0}
-						className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-					>
-						<li>
-							<a className="justify-between">
-								Profile
-								<span className="badge">New</span>
-							</a>
-						</li>
-						<li>
-							<a>Settings</a>
-						</li>
-						<li>
-							<a>Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+					placeholder="Search for music, albums, artists..."
+					className="border-solid w-full px-8 py-2 bg-transparent text-white focus:outline-none border border-r-0 rounded-s-full border-white outline-none group-hover/search:border-spotify transition duration-300 ease-in-out"
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+				></input>
+				<button
+					type="submit"
+					className="border-solid border border-l-0 px-4 py-2 bg-transparent rounded-r-full group border-white outline-none focus:outline-none text-center align-middle group-hover/search:border-spotify transition duration-300 ease-in-out"
+				>
+					<FaSearch className="rounded-e-full inline-block group-hover/search:text-spotify transition duration-300 ease-in-out" />
+				</button>
+			</form>
 		</div>
 	)
+}
+
+Header.propTypes = {
+	showDrawer: PropTypes.func.isRequired,
 }
 
 export default Header

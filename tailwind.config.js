@@ -1,5 +1,3 @@
-import DaisyUIPlugin from 'daisyui'
-
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -9,7 +7,9 @@ export default {
 			colors: {
 				white: '#F9F9F9',
 				black: '#000000',
-				'spectra-yellow': '#F8B319',
+				primary: '#040D12',
+				secondary: '#93B1A6',
+				spotify: '#1bd760',
 			},
 			fontFamily: {
 				lato: ['Lato', 'sans-serif'],
@@ -25,5 +25,6 @@ export default {
 			},
 		},
 	},
-	plugins: [DaisyUIPlugin],
+
+	plugins: [],
 }
