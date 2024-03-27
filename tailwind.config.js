@@ -10,6 +10,7 @@ export default {
 				primary: '#040D12',
 				secondary: '#93B1A6',
 				spotify: '#1bd760',
+				songcard: '#1F1F1F',
 			},
 			fontFamily: {
 				lato: ['Lato', 'sans-serif'],
