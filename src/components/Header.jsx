@@ -28,7 +28,7 @@ const Header = ({ showDrawer }) => {
 			{/* Search bar */}
 			<form
 				id="search-bar"
-				className="flex text-white items-center w-1/3 md:w-1/2 group/search "
+				className="flex text-white items-center w-1/2 group/search "
 				onSubmit={handleSearch}
 			>
 				<input

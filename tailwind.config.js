@@ -17,11 +17,15 @@ export default {
 			},
 			fontSize: {
 				h1: '3rem',
-				h2: '1.5rem',
+				h2: '2rem',
 				h3: '1.125rem',
 				h4: '1rem',
 				h5: '0.813rem',
 				h6: '0.67rem',
+			},
+			backgroundImage: {
+				'profile-gradient':
+					'linear-gradient(180deg, rgba(255, 255, 255, 0.60) 0%, #183D3D 100%)',
 			},
 		},
 	},

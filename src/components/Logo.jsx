@@ -8,7 +8,7 @@ const Logo = () => {
 				alt="logo"
 				className="w-24 md:w-64 h-auto object-cover bg-no-repeat"
 			/>
-			<span className="text-h2 md:text-h1 font-bold">SoundBuzz</span>
+			<span className="hidden md:block text-h1 font-bold">SoundBuzz</span>
 		</a>
 	)
 }

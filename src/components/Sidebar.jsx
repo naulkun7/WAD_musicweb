@@ -4,6 +4,7 @@ import { IoMdSettings } from 'react-icons/io'
 
 // Import components
 import Logo from './Logo'
+import ProfileBanner from '../components/Profile/ProfileBanner'
 
 // Location
 import { useLocation, Link } from 'react-router-dom'
@@ -39,25 +40,30 @@ const Sidebar = () => {
 	}
 
 	return (
-		<div className="bg-transparent w-full h-full space-y-20">
+		<div className="bg-transparent w-full h-full space-y-20 flex flex-col">
 			{/* Logo image */}
-			<div className="hidden md:block">
+			<div className="hidden md:block my-2">
 				<Logo />
 			</div>
 
+			{/* SoundBuzz Title in Mobile */}
+			<div className="md:hidden text-center text-white">
+				<h1 className="text-h1 font-bold text-white">SoundBuzz</h1>
+			</div>
+
 			{/* Nav Items */}
-			<div>
+			<div className="flex-1">
 				<h2 className="text-center text-white">Na&apos;s Page</h2>
 				<ul className="space-y-2 list-none flex flex-col items-center justify-between text-h2">
 					{navItems.map(({ label, path, Icon }) => (
-						<li key={path} className="w-full text-center">
+						<li key={path} className="w-full text-center ">
 							<Link
 								to={path}
-								className={`p-2.5 flex items-center gap-1 justify-center text-white ${isActive(
+								className={`p-2.5 gap-4 flex items-center justify-center text-white ${isActive(
 									path,
 								)}`}
 							>
-								<Icon className="inline-block mr-2" />
+								<Icon className="inline-block" />
 								{label}
 							</Link>
 						</li>
@@ -66,6 +72,9 @@ const Sidebar = () => {
 			</div>
 
 			{/* Profile */}
+			<div className="flex-none hidden md:block">
+				<ProfileBanner />
+			</div>
 		</div>
 	)
 }
